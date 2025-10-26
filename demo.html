@@ -87,18 +87,39 @@
 		console.log('测试')
 		
 		const arr = [1,2,3];
-		console.log(arr);
+		// console.log(arr);
 		const string = 'abc';
-		console.log(string.__proto__);
+		// console.log(string.__proto__);
 		
 		function Person(name){
 			this.name = name;
 		}
 		Person.prototype.sayHi = function() {
-		  console.log(`Hi, I'm ${this.name}`);
+		  // console.log(`Hi, I'm ${this.name}`);
 		};
 		
 		console.log(Person.prototype);
+		const target = {
+			id:'target'
+		}
+		const handle = {
+			
+			get(trapTarget, property, receiver) { 
+			 console.log(trapTarget === target); 
+			 console.log(property); 
+			 console.log(receiver === proxy); 
+			 } 
+			
+		};
+		const proxy = new Proxy(target,handle);
+		
+		
+		console.log(target.id);
+		console.log(proxy.id);
+		target.id  =  'foo';
+		console.log(target.id);
+		console.log(proxy.id);
+		
 		
 
         let dark = false;
